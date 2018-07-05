@@ -4,11 +4,11 @@ require "pg"
 module TestUtil
   class TestClass
     
-    def self.connect(host, dbname, user, password, port)
+    def self.connect(db_hash)
       begin
-        return PG::Connection.open(:host => host, :dbname => dbname, :user => user, :password => password, :port => port)
-      rescue
-        return "error"
+        return PG::Connection.open(db_hash)
+      rescue PG::Error => e
+        return e
       end
     end
 
