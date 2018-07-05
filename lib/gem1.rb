@@ -1,19 +1,19 @@
 require "gem1/version"
 require "pg"
 
-module PG_Utilities
-  class PG_Connection
+module TestUtil
+  class TestClass
     
-    def self.connect(host, dbname, username, password, port)?
+    def self.connect(host, dbname, user, password, port)
       begin
-        return PG::Connection.open(:host => host, :dbname => dbname, :username => username, :password => password, :port => port)
+        return PG::Connection.open(:host => host, :dbname => dbname, :user => user, :password => password, :port => port)
       rescue
-        return PG::Error
+        return "error"
       end
     end
 
-    def self.msg(message)?
-      return "you said: " + message.to_s
+    def self.msg
+      return "you said: " #+ message.to_s
     end
   end
 end
