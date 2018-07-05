@@ -2,7 +2,7 @@
 
 
 #  THIS REPO IS PRACTICE FOR CREATING A GEM
-#  I will no be pushing the gem out to rubygems
+#  I will not be pushing the gem out to rubygems
 
 
 
