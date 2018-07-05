@@ -8,7 +8,7 @@ module TestUtil
       begin
         return PG::Connection.open(db_hash)
       rescue PG::Error => e
-        return e
+        return { :connection => e.connection, :result => e.result }
       end
     end
 
