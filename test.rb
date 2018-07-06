@@ -7,7 +7,7 @@ sum = 0
 
 repeat.times {
 
-    db_hash = { :host => "zotac1.ddns.net",
+    db_hash = { :host => "zotac1.ddns.netX",
             :dbname => "gisdb",
             :user => "gisdb",
             :password => "gisDB",
