@@ -1,4 +1,5 @@
 require "gem1"
+require "pg"
 # require "json"
 
 db_hash = { :host => "zotac1.ddns.net",
@@ -14,11 +15,14 @@ response = PGPack::PGConnect.connect(db_hash)
 puts
 puts "-----"
 puts response
-start = Time.now
-test = JSON.parse(response)
-puts Time.now - start
-puts test["success"]
-puts test["message"]
-puts test["conn"]
+puts response[:success]
+puts response[:message]
+puts response[:conn]
 puts "-----"
-puts
+
+conn = response[:conn]
+puts conn.class
+response_query = conn.query("select count(*) from world")
+puts response_query[0]
+
+puts PGPack::PGConnect.disconnect(conn)

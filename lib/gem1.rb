@@ -12,10 +12,20 @@ module PGPack
 
       begin
         conn = PG::Connection.open(db_hash)
-        return JSON.generate({ :success => 1, :message => "SUCCESS: connected", :conn => conn })
+        puts conn.class
+        return { :success => 1, :message => "SUCCESS: connected", :conn => conn }
       rescue PG::Error => e
         conn.close if conn
-        return JSON.generate({ :success => 0, :message => e.message, :conn => nil })
+        return { :success => 0, :message => e.message, :conn => nil }
+      end
+    end
+
+    def self.disconnect(conn)
+      begin
+        conn.close if conn
+        return true
+      rescue
+        return false
       end
     end
 
