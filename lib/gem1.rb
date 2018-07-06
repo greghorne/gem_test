@@ -9,12 +9,7 @@ module PGPack
       begin
         return PG::Connection.open(db_hash)
       rescue PG::Error => e
-
-        return_hash = { :message => e.message}
-        # puts return_hash
-        # puts e.message
-        return return_hash
-
+        return JSON.generate({ :message => e.message })
       end
     end
 
