@@ -1,14 +1,20 @@
 require "gem1/version"
 require "pg"
+require "json"
 
-module TestUtil
-  class TestClass
+module PGPack
+  class ClassMain
     
     def self.connect(db_hash)
       begin
         return PG::Connection.open(db_hash)
       rescue PG::Error => e
-        return { :connection => e.connection, :result => e.result }
+
+        return_hash = { :message => e.message}
+        # puts return_hash
+        # puts e.message
+        return return_hash
+
       end
     end
 

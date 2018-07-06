@@ -8,7 +8,12 @@ db_hash = { :host => "zotac1.ddns.net",
             :sslmode => "require"
 }
 
-response = TestUtil::TestClass.connect(db_hash)
+response = PGPack::ClassMain.connect(db_hash)
 
+puts
 puts "-----"
 puts response
+puts "-----"
+puts response["message"]
+puts "-----"
+puts
