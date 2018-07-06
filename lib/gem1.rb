@@ -12,7 +12,7 @@ module PGPack
 
       begin
         conn = PG::Connection.open(db_hash)
-        puts conn.class
+        # puts conn.class
         return { :success => 1, :message => "SUCCESS: connected", :conn => conn }
       rescue PG::Error => e
         conn.close if conn
