@@ -1,21 +1,18 @@
 require "gem1/version"
 require "pg"
-require "json"
+# require "json"
 
 module PGPack
-  class ClassMain
+  class PGConnect
     
     def self.connect(db_hash)
       begin
-        return PG::Connection.open(db_hash)
+        return JSON.generate({ :success => 1, :message => "SUCCESS: connected", :conn => PG::Connection.open(db_hash) })
       rescue PG::Error => e
-        return JSON.generate({ :message => e.message })
+        return JSON.generate({ :success => 0, :message => e.message, :conn => nil })
       end
     end
 
-    def self.msg
-      return "you said: " #+ message.to_s
-    end
   end
 end
 

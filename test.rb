@@ -1,23 +1,22 @@
 require "gem1"
-require "json"
+# require "json"
 
 db_hash = { :host => "zotac1.ddns.net",
             :dbname => "gisdb",
             :user => "gisdb",
-            :password => "gisDBA",
+            :password => "gisDB",
             :port => 2346,
             :sslmode => "require"
 }
 
-response = PGPack::ClassMain.connect(db_hash)
+response = PGPack::PGConnect.connect(db_hash)
 
 puts
 puts "-----"
 puts response
-puts "-----"
-# puts response.keys
-puts "====="
 test = JSON.parse(response)
+puts test["success"]
 puts test["message"]
+puts test["conn"]
 puts "-----"
 puts
