@@ -7,9 +7,8 @@ module PGPack
     
     def self.connect(db_hash)
 
-      if !db_hash[:hostaddr]
-        db_hash[:hostaddr] = Resolv.getaddress db_hash[:host].to_s
-      end
+      # resolve the host ip address if necessary; :hostaddr (ip) overrides :host (name)
+      db_hash[:hostaddr] || (Resolv.getaddress db_hash[:host])
 
       begin
         conn = PG::Connection.open(db_hash)
