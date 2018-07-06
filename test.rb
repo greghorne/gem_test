@@ -14,7 +14,9 @@ response = PGPack::PGConnect.connect(db_hash)
 puts
 puts "-----"
 puts response
+start = Time.now
 test = JSON.parse(response)
+puts Time.now - start
 puts test["success"]
 puts test["message"]
 puts test["conn"]
