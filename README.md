@@ -2,7 +2,12 @@
 
 
 #  THIS REPO IS PRACTICE FOR CREATING A GEM
-#  I will not be pushing the gem out to rubygems
+#  I will not be pushing this gem out to rubygems.org
+
+#  Experimenting by creating a gem that uses the PG gem
+
+gem1.rb has the code for the gem
+test.rb has varioius test routines
 
 
 
