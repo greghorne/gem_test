@@ -4,7 +4,7 @@ require "pg"
 def test_gem(db_hash, repeat)
 
     sum = 0
-    repeat = 20
+    repeat = 100
     repeat.times {
 
         db_hash = { :host => ENV["PG_HOST"],
@@ -21,7 +21,7 @@ def test_gem(db_hash, repeat)
         sum += (Time.now - start)
 
         conn = response[:conn]
-        response_query = conn.query("select count(*) from world")
+        # response_query = conn.query("select count(*) from world")
 
         PGPack::PGConnect.disconnect(conn)
 
