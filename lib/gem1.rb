@@ -16,6 +16,13 @@ module PGPack
         # catch the error but just continue
       end
 
+      # require sslmode
+      # db_hash[:sslmode] || db_hash[:sslmode] = "require"
+
+      # encrypted = PG::Connection.encrypt_password(db_hash[:user], db_hash[:password])
+      # puts encrypted
+      # db_hash[:password] = encrypted
+
       begin
         conn = PG::Connection.open(db_hash)
         return { :success => 1, :message => "SUCCESS: connected", :conn => conn }
