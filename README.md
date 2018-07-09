@@ -4,10 +4,11 @@
 #  THIS REPO IS PRACTICE FOR CREATING A GEM
 #  I will not be pushing this gem out to rubygems.org
 
-#  Experimenting by creating a gem that uses the PG gem
+-  Experimenting by creating a gem that uses the PG gem.  Sounds redundant.
+   Coded my own PG "connect" routine and return json object
 
-gem1.rb has the code for the gem
-test.rb has varioius test routines
+- gem1.rb has the code for the gem
+- test.rb has varioius test routines
 
 
 
