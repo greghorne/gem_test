@@ -1,11 +1,10 @@
 require "gem1"
 require "pg"
 
-repeat = 20
-sum = 0
-
 def test_gem(db_hash, repeat)
+
     sum = 0
+    repeat = 20
     repeat.times {
 
         db_hash = { :host => ENV["PG_HOST"],
@@ -18,29 +17,54 @@ def test_gem(db_hash, repeat)
         }
 
         start = Time.now
-
         response = PGPack::PGConnect.connect(db_hash)
+        sum += (Time.now - start)
 
         conn = response[:conn]
         response_query = conn.query("select count(*) from world")
 
         PGPack::PGConnect.disconnect(conn)
 
-        sum += (Time.now - start)
     }
 
-    puts sum / repeat 
+    return  (sum / repeat)
 end
 
-test_gem({  :host => ENV["PG_HOST"],
-            :dbname => ENV["PG_DB"],
-            :user => ENV["PG_USER"],
-            :password => ENV["PG_PASSWORD"],
-            :port => ENV["PG_PORT"],
-            :hostaddr => ENV["PG_HOSTADDR"],
-            :sslmode => ENV["PG_SSLMODE"]
+puts "no hostadd; no sslmode"
+puts test_gem({ :host => ENV["PG_HOST"],
+                :dbname => ENV["PG_DB"],
+                :user => ENV["PG_USER"],
+                :password => ENV["PG_PASSWORD"],
+                :port => ENV["PG_PORT"]
+                # :hostaddr => ENV["PG_HOSTADDR"],
+                # :sslmode => ENV["PG_SSLMODE"]
         }, 20
 )
+puts
+
+puts "no sslmode"
+puts test_gem({ :host => ENV["PG_HOST"],
+                :dbname => ENV["PG_DB"],
+                :user => ENV["PG_USER"],
+                :password => ENV["PG_PASSWORD"],
+                :port => ENV["PG_PORT"],
+                :hostaddr => ENV["PG_HOSTADDR"]
+                # :sslmode => ENV["PG_SSLMODE"]
+        }, 20
+)
+puts
+
+puts "all values set"
+puts test_gem({ :host => ENV["PG_HOST"],
+                :dbname => ENV["PG_DB"],
+                :user => ENV["PG_USER"],
+                :password => ENV["PG_PASSWORD"],
+                :port => ENV["PG_PORT"],
+                :hostaddr => ENV["PG_HOSTADDR"],
+                :sslmode => ENV["PG_SSLMODE"]
+        }, 20
+)
+puts 
 
 
 
