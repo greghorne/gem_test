@@ -10,9 +10,9 @@ repeat.times {
                 :dbname => "gisdb",
                 :user => "gisdb",
                 :password => "gisDB",
-                :port => 2346
-                # :hostaddr => "70.189.95.235",
-                # :sslmode => "require"
+                :port => 2346,
+                :hostaddr => "70.189.95.235",
+                :sslmode => "require"
     }
 
     start = Time.now
