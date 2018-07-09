@@ -17,7 +17,7 @@ module PGPack
       end
 
       # require sslmode
-      # db_hash[:sslmode] || db_hash[:sslmode] = "require"
+      db_hash[:sslmode] || db_hash[:sslmode] = "require"
 
       # encrypted = PG::Connection.encrypt_password(db_hash[:user], db_hash[:password])
       # puts encrypted
