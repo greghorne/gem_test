@@ -11,8 +11,8 @@ module PGPack
     # --------------------------------------------------
     def self.connect(db_hash)
 
-      # Given a host, will resolve hostaddr and assign it into global $hostaddr_hash and
-      # assign it into db_hash.  Not helpful is PGConnect object is being destroyed after
+      # Given a host, will resolve hostaddr and assign it into global $hostaddr_hash[] and
+      # also add it to db_hash[].  Not helpful if PGConnect object is being destroyed after
       # each disconnect
       if !$hostaddr_hash[db_hash[:host]]
         $hostaddr_hash[db_hash[:host].to_s] = Resolv.getaddress db_hash[:host]
