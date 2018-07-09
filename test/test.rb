@@ -4,7 +4,7 @@ require "pg"
 def test_gem(db_hash, repeat)
 
     sum = 0
-    repeat = 100
+    repeat = 3
     repeat.times {
 
         db_hash = { :host => ENV["PG_HOST"],

@@ -2,6 +2,8 @@ require "gem1/version"
 require "pg"
 require "resolv"
 
+$hostaddr_hash = Hash.new {}
+
 module PGPack
   class PGConnect
     
@@ -9,12 +11,20 @@ module PGPack
     # --------------------------------------------------
     def self.connect(db_hash)
 
-      # resolve the host ip address if necessary; :hostaddr (ip) overrides :host (name)
-      begin
-        db_hash[:hostaddr] || (db_hash[:hostaddr] = Resolv.getaddress db_hash[:host])
-      rescue
-        # catch the error but just continue
+      # Given a host, will resolve hostaddr and assign it into global $hostaddr_hash and
+      # assign it into db_hash.  Not helpful is PGConnect object is being destroyed after
+      # each disconnect
+      if !$hostaddr_hash[db_hash[:host]]
+        $hostaddr_hash[db_hash[:host].to_s] = Resolv.getaddress db_hash[:host]
+        db_hash[:hostaddr] = $hostaddr_hash[:hostaddr].to_s
       end
+
+      # resolve the host ip address if necessary; :hostaddr (ip) overrides :host (name)
+      # begin
+      #   db_hash[:hostaddr] || (db_hash[:hostaddr] = Resolv.getaddress db_hash[:host])
+      # rescue
+      #   # catch the error but just continue
+      # end
 
       # require sslmode
       db_hash[:sslmode] || db_hash[:sslmode] = "require"
